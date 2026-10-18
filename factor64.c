@@ -233,7 +233,6 @@ int isprime64(uint64_t n) {
 // given that f is coprime to 510510, less than M and divides n,
 // return a list of the prime factors of f and remove them from n
 static int smallfactors(uint64_t *p,int *e,uint32_t f,uint64_t *n) {
-	uint64_t x;
 	uint32_t y;
 	int k;
 
@@ -262,7 +261,7 @@ static uint64_t oddgcd(uint64_t x,uint64_t y) {
 
 	if (y) {
 		y >>= __builtin_ctzl(y);
-		while (t=absdiff(x,y))
+		while ((t=absdiff(x,y)))
 			if (x < y)
 				y = t>>__builtin_ctzl(t);
 			else
@@ -278,7 +277,7 @@ int factor64(uint64_t *p,int *e,uint64_t n) {
 #define iterations 473344
 #define maxstride 256
 	uint64_t m,nbar,x,y,y0,f,one;
-	uint32_t *ptr,s;
+	uint32_t *ptr;
 	int i,j,k,mask;
 
 	k = 0;
